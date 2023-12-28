@@ -9,7 +9,7 @@ const converter = new showdown.Converter();
 prevComicImage.setAttribute("hidden", "");
 nextComicImage.setAttribute("hidden", "");
 
-const getBlogHtml = function(n, element) {
+const loadBlogToElement = function(n, element) {
     const client = new XMLHttpRequest();
     client.open('GET', 'blogs/' + n + '.md');
     client.onreadystatechange = function() {
@@ -33,3 +33,5 @@ const getHash = function() {
 let currentHash = getHash();
 
 loadImageToElement(currentHash, currentComicImage);
+
+loadBlogToElement(currentHash, comicBlogArea);
