@@ -20,6 +20,13 @@ const loadBlogToElement = function(n, element) {
 
 const loadImageToElement = function(n, element) {
     element.src = 'comics/' + n + '.png';
+    const client = new XMLHttpRequest();
+    client.open('GET', 'comics/caption_' + n + '.txt');
+    client.onreadystatechange = function() {
+        element.title = client.responseText;
+        element.setAttribute('title', client.responseText);
+    }
+    client.send();
 }
 
 const getHash = function() {
