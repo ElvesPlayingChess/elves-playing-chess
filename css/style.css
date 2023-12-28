@@ -1,0 +1,32 @@
+#main-title {
+	text-align: center;
+	font-family: "Playfair Display";
+}
+
+[hidden] {
+	display: none;
+}
+
+img {
+    display: block;
+    margin: auto;
+    object-fit: scale-down;
+}
+
+.comic-control-bar {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    display: block;
+    width: 600px;
+    user-select: none;
+}
+
+.comic-control-bar > span {
+    font-family: "Playfair Display";
+    text-align: center;
+    user-select: none;
+    width: 100px;
+    display: inline-block;
+}
