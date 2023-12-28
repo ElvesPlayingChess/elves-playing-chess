@@ -30,3 +30,11 @@ img {
     width: 100px;
     display: inline-block;
 }
+
+#comic-blog-area > p {
+    font-family: "Lora";
+}
+
+#comic-blog-area > h1 {
+    font-family: "Lora";
+}
