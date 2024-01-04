@@ -6,9 +6,6 @@ const comicBlogArea = document.querySelector('#comic-blog-area');
 
 const converter = new showdown.Converter();
 
-prevComicImage.setAttribute("hidden", "");
-nextComicImage.setAttribute("hidden", "");
-
 const loadBlogToElement = function(n, element) {
     const client = new XMLHttpRequest();
     client.open('GET', 'blogs/' + n + '.md');
