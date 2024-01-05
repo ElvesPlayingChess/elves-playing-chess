@@ -2,10 +2,17 @@ let prevComicImage = document.querySelector('#prev-comic-image');
 let currentComicImage = document.querySelector('#current-comic-image');
 let nextComicImage = document.querySelector('#next-comic-image');
 
+const navBarUpperFirst = document.querySelector('#nav-upper-first');
+const navBarLowerFirst = document.querySelector('#nav-lower-first');
+
 const navBarUpperPrev = document.querySelector('#nav-upper-prev');
 const navBarLowerPrev = document.querySelector('#nav-lower-prev');
+
 const navBarUpperNext = document.querySelector('#nav-upper-next');
 const navBarLowerNext = document.querySelector('#nav-lower-next');
+
+const navBarUpperLast = document.querySelector('#nav-upper-last');
+const navBarLowerLast = document.querySelector('#nav-lower-last');
 
 let prevBlogHTML = {};
 let comicBlogArea = document.querySelector('#comic-blog-area');
@@ -95,6 +102,14 @@ const updateDisplay = function() {
     attemptLoading();
 }
 
+const firstButtonClick = function(e) {
+    if (current_index == 1) {
+        return;
+    }
+    current_index = 1;
+    updateDisplay();
+}
+
 const prevButtonClick = function(e) {
     if (current_index <= 1) {
         return;
@@ -111,10 +126,24 @@ const nextButtonClick = function(e) {
     updateDisplay();
 }
 
+const lastButtonClick = function(e) {
+    if (current_index == num_comics) {
+        return;
+    }
+    current_index = num_comics;
+    updateDisplay();
+}
+
+navBarUpperFirst.addEventListener("click", firstButtonClick);
+navBarLowerFirst.addEventListener("click", firstButtonClick);
+
 navBarUpperPrev.addEventListener("click", prevButtonClick);
 navBarLowerPrev.addEventListener("click", prevButtonClick);
 
 navBarUpperNext.addEventListener("click", nextButtonClick);
 navBarLowerNext.addEventListener("click", nextButtonClick);
+
+navBarUpperLast.addEventListener("click", lastButtonClick);
+navBarLowerLast.addEventListener("click", lastButtonClick);
 
 attemptLoading();
