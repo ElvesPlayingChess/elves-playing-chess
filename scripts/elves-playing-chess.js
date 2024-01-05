@@ -2,9 +2,36 @@ let prevComicImage = document.querySelector('#prev-comic-image');
 let currentComicImage = document.querySelector('#current-comic-image');
 let nextComicImage = document.querySelector('#next-comic-image');
 
-const comicBlogArea = document.querySelector('#comic-blog-area');
+const navBarPrev = document.querySelector('#nav-prev');
+const navBarNext = document.querySelector('#nav-next');
+
+let prevBlogHTML = {};
+let currentBlogArea = document.querySelector('#current-blog-area');
+let nextBlogHTML = {};
 
 const converter = new showdown.Converter();
+
+const num_comics = 2;
+let current_index = num_comics;
+
+const getHash = function() {
+    const trueHash = location.hash;
+    if (trueHash === '') {
+        return `${num_comics}`;
+    }
+    return trueHash.slice(1);
+}
+
+const getIndex = function(i) {
+    const hash = getHash();
+    if (isIntegerString(hash)) {
+        return Number(hash);
+    } else {
+        return i;
+    }
+}
+
+current_index = getIndex(current_index);
 
 const loadBlogToElement = function(n, element) {
     const client = new XMLHttpRequest();
@@ -26,16 +53,52 @@ const loadImageToElement = function(n, element) {
     client.send();
 }
 
-const getHash = function() {
-    const trueHash = location.hash;
-    if (trueHash === '') {
-        return "1";
-    }
-    return trueHash;
+const isIntegerString = function(s) {
+    return (!isNaN(s) && Number.isInteger(Number(s)));
 }
 
-let currentHash = getHash();
+const isInRange = function(i) {
+    return ((i > 0) && (i <= num_comics));
+}
 
-loadImageToElement(currentHash, currentComicImage);
+const attemptLoadingCurrent = function(index) {
+    loadImageToElement(index, currentComicImage);
+    loadBlogToElement(index, comicBlogArea);
+}
 
-loadBlogToElement(currentHash, comicBlogArea);
+const attemptLoadingPrev = function(index) {
+    loadImageToElement(index, prevComicImage);
+    loadBlogToElement(index, prevBlogHTML);
+}
+
+const attemptLoadingNext = function(index) {
+    loadImageToElement(index, nextComicImage);
+    loadBlogToElement(index, nextBlogHTML);
+}
+
+const attemptLoading = function() {
+    if (isInRange(current_index)) {
+        attemptLoadingCurrent(current_index);
+    }
+    if (isInRange(current_index - 1)) {
+        attemptLoadingPrev(current_index - 1);
+    }
+    if (isInRange(current_index + 1)) {
+        attemptLoadingNext(current_index + 1);
+    }
+}
+
+const updateDisplay = function() {
+    window.location.hash = current_index;
+    attemptLoading();
+}
+
+navBarPrev.addEventListener("click", e => {
+    if (current_index <= 1) {
+        return;
+    }
+    current_index -= 1;
+    updateDisplay();
+});
+
+attemptLoading();
