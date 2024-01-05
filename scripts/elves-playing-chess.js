@@ -22,6 +22,10 @@ const getHash = function() {
     return trueHash.slice(1);
 }
 
+const isIntegerString = function(s) {
+    return (!isNaN(s) && Number.isInteger(Number(s)));
+}
+
 const getIndex = function(i) {
     const hash = getHash();
     if (isIntegerString(hash)) {
@@ -51,10 +55,6 @@ const loadImageToElement = function(n, element) {
         element.setAttribute('title', client.responseText);
     }
     client.send();
-}
-
-const isIntegerString = function(s) {
-    return (!isNaN(s) && Number.isInteger(Number(s)));
 }
 
 const isInRange = function(i) {
