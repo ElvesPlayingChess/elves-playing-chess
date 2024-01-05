@@ -6,7 +6,7 @@ const navBarPrev = document.querySelector('#nav-prev');
 const navBarNext = document.querySelector('#nav-next');
 
 let prevBlogHTML = {};
-let currentBlogArea = document.querySelector('#current-blog-area');
+let comicBlogArea = document.querySelector('#comic-blog-area');
 let nextBlogHTML = {};
 
 const converter = new showdown.Converter();
@@ -63,7 +63,7 @@ const isInRange = function(i) {
 
 const attemptLoadingCurrent = function(index) {
     loadImageToElement(index, currentComicImage);
-    loadBlogToElement(index, currentBlogArea);
+    loadBlogToElement(index, comicBlogArea);
 }
 
 const attemptLoadingPrev = function(index) {
