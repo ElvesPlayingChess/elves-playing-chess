@@ -2,8 +2,10 @@ let prevComicImage = document.querySelector('#prev-comic-image');
 let currentComicImage = document.querySelector('#current-comic-image');
 let nextComicImage = document.querySelector('#next-comic-image');
 
-const navBarPrev = document.querySelector('#nav-prev');
-const navBarNext = document.querySelector('#nav-next');
+const navBarUpperPrev = document.querySelector('#nav-upper-prev');
+const navBarLowerPrev = document.querySelector('#nav-lower-prev');
+const navBarUpperNext = document.querySelector('#nav-upper-next');
+const navBarLowerNext = document.querySelector('#nav-lower-next');
 
 let prevBlogHTML = {};
 let comicBlogArea = document.querySelector('#comic-blog-area');
@@ -93,12 +95,26 @@ const updateDisplay = function() {
     attemptLoading();
 }
 
-navBarPrev.addEventListener("click", e => {
+const prevButtonClick = function(e) {
     if (current_index <= 1) {
         return;
     }
     current_index -= 1;
     updateDisplay();
-});
+}
+
+const nextButtonClick = function(e) {
+    if (current_index >= num_comics) {
+        return;
+    }
+    current_index += 1;
+    updateDisplay();
+}
+
+navBarUpperPrev.addEventListener("click", prevButtonClick);
+navBarLowerPrev.addEventListener("click", prevButtonClick);
+
+navBarUpperNext.addEventListener("click", nextButtonClick);
+navBarLowerNext.addEventListener("click", nextButtonClick);
 
 attemptLoading();
