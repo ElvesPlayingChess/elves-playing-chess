@@ -63,7 +63,7 @@ const isInRange = function(i) {
 
 const attemptLoadingCurrent = function(index) {
     loadImageToElement(index, currentComicImage);
-    loadBlogToElement(index, comicBlogArea);
+    loadBlogToElement(index, currentBlogArea);
 }
 
 const attemptLoadingPrev = function(index) {
